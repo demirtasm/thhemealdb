@@ -5,9 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import md.learn.mvvmdeneme.api.CategoriesApiService
-import md.learn.mvvmdeneme.api.CategoryApiResponse
-import md.learn.mvvmdeneme.api.categoriesApiService
+import md.learn.mvvmdeneme.services.CategoryApiResponse
+import md.learn.mvvmdeneme.services.categoriesApiService
 
 class MainViewModel : ViewModel() {
     private val _categoriesState = mutableStateOf(theMealDbState())
@@ -27,11 +26,10 @@ class MainViewModel : ViewModel() {
             }
         }
     }
-
+    data class theMealDbState(
+        val loading:Boolean = true,
+        val list: List<CategoryApiResponse> = emptyList(),
+        val error: String?= null
+    )
 }
 
-data class theMealDbState(
-    val loading:Boolean = true,
-    val list: List<CategoryApiResponse> = emptyList(),
-    val error: String?= null
-)

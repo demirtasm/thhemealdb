@@ -1,4 +1,4 @@
-package md.learn.mvvmdeneme.api
+package md.learn.mvvmdeneme.services
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -12,6 +12,9 @@ private val retrofit = Retrofit.Builder().baseUrl("https://www.themealdb.com/api
 interface CategoriesApiService{
     @GET("categories.php")
     suspend fun getCategories(): CategoriesResponsesList
+
+    @GET("search.php?s=")
+    suspend fun getCategorieDetail(): CategoriesResponsesList
 }
 
 val categoriesApiService = retrofit.create(CategoriesApiService::class.java)
